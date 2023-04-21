@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form data</title>
+    <style>
+        body {
+            background: black;
+        }
+        
+        .box {
+            width: 1000px;
+            height: 600px;
+            box-shadow: 0px 0px 20px 2px rgb(255, 255, 255);
+            margin: 50px auto;
+            border-radius: 50px;
+        }
+        
+        .box:hover {
+            box-shadow: 0px 0px 25px 5px yellow;
+        }
+        
+        input {
+            width: 430px;
+            height: 50px;
+            border-radius: 10px;
+            margin: 15px 25px;
+            font-size: 20px;
+            padding-left: 15px;
+            background: black;
+            color: #ffff;
+            border: none;
+            box-shadow: 0px 0px 2px 2px rgb(255, 255, 255);
+        }
+        
+        input:hover {
+            color: yellow;
+            scale: 1.1;
+            transition: .5s;
+            box-shadow: 0px 0px 5px 3px yellow;
+        }
+        
+        input:hover::-webkit-input-placeholder {
+            color: #ffff;
+        }
+        
+        #submitbtn {
+            width: 80%;
+            height: 50px;
+            margin-left: 100px;
+            margin-top: 20px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: 800;
+            background: rgb(143, 143, 255);
+            cursor: pointer;
+        }
+        
+        #submitbtn:hover {
+            background: black;
+            box-shadow: 0px 0px 2px 2px rgb(13, 255, 0);
+            color: yellow;
+        }
+        
+        #textarea {
+            margin-left: 20px;
+            box-shadow: 0px 0px 2px 2px rgb(255, 255, 255);
+            background: black;
+            color: #ffff;
+            padding-left: 15px;
+            padding-top: 10px;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        
+        #textarea::-webkit-scrollbar {
+            display: none;
+        }
+        
+        #textarea:hover {
+            color: yellow;
+            scale: 1.1;
+            transition: .5s;
+            box-shadow: 0px 0px 5px 3px yellow;
+        }
+        
+        #textarea:hover::-webkit-input-placeholder {
+            color: #ffff;
+        }
+    </style>
+</head>
+
+<body>
+    <form method="post" autocomplete="off" action="" name="google-sheet">
+        <div class="box" id="form">
+            <input name="name" id="name" type="text" placeholder="Aapka Name Kya Hai ?">
+            <input name="papa" id="papa" type="text" placeholder="Aapke Papa Ji Ka Name Kya Hai ?">
+            <input name="mummy" id="mummy" type="text" placeholder="Aapki Mummy Ji Ka Name Kya Hai ?">
+            <input name="friend" id="friend" type="text" placeholder="Aapke Best Friend Ka Name Kya Hai ?">
+            <input name="saal" id="saal" type="number" placeholder="Aap Kitne Saal Ke Ho ?">
+            <input name="saadi" id="saadi" type="text" placeholder="Aap Ki Saadi Ho Gyai Hai Ya Nhi ?">
+            <input name="kaam" id="kaam" type="text" placeholder="Aap Kya Kam Karte Ho ?">
+            <input name="likhe" id="likhe" type="text" placeholder="Aap Kitne Pde Likho Ho ?">
+            <input name="insta" id="insta" type="text" placeholder="Aapka Instagram Account Kya Hai ?">
+            <input name="whats" id="whats" type="number" placeholder="Aapka Whatsapp Number Kya Hai ?">
+            <textarea name="textarea" id="textarea" cols="82" rows="4" placeholder="Aap Apne Bare Me Kuchh Btayen !"></textarea>
+            <input type="submit" name="submit" id="submitbtn" value="Submit">
+
+        </div>
+    </form>
+
+
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwNi9og-TD8SSOZvQKa_mH-oxuKUtrAEIS7KPF0llf8JQjPA2-FAMJgpxh1cqmugK0z/exec'
+        const form = document.forms['google-sheet']
+
+        form.addEventListener('submit', e => {
+            e.preventDefault()
+            fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                .then(response => alert("Thanks for Contacting us..! We Will Contact You Soon..."))
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+</body>
+
+</html>
